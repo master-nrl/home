@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+<title>منصة نشر الكتب والندوات التعليمية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- مكتبة CSS لمشغل الفيديو -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+    <style>
+    body {
+    font-family: 'Cairo', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+body[dir="rtl"] {
+    font-family: 'Cairo', sans-serif; /* تغيير الخط للغة العربية */
+}
+
+    header {
+    background-color: #0cbc58;
+    color: white;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;  /* لضمان التوسيط التام */
+    align-items: center;  /* لضمان التوسيط الرأسي */
+    height: 50px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 18px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+    .menu-icon {
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    /* شريط الأقسام */
+    .nav-links {
+        position: sticky; /* لجعلها تلتصق بأعلى الصفحة */
+        top: 60px; /* بعد الهيدر */
+        background-color: #f9f9f9;
+        color: #333;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        border-top: 2px solid #ddd;
+        z-index: 999; /* للتأكد من بقاء الشريط فوق المحتوى */
+    }
+
+    .nav-links div {
+        cursor: pointer;
+        font-size: 18px;
+        padding: 10px 20px;
+        border: none; /* إزالة الإطار */
+        border-radius: 0; /* إزالة الزوايا المستديرة */
+        position: relative; /* لضمان إمكانية إضافة الخط */
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #333; /* لون النص الافتراضي */
+        transition: color 0.3s;
+    }
+
+    .nav-links div:hover {
+        color: #0c70ba;
+    }
+
+    .nav-links div.active {
+        color: #0c70ba; /* لون النص للخانة النشطة */
+    }
+
+    .nav-links div.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #0c70ba; /* لون الخط */
+        transition: width 0.3s;
+    }
+
+    /* محتوى الصفحة */
+    .container {
+        margin: 60px auto;
+        padding: 5px;
+        max-width: 1000px;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 24px;
+        color: #0c70ba;
+        border-bottom: 2px solid #0c70ba;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+/* تعديل الخانة لتكون ديناميكية */
+.card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px; /* عرض ثابت */
+    padding: 10px; /* إضافة تباعد داخلي */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* توزيع العناصر بالتساوي */
+    margin: 10px auto; /* جعل البطاقة في المنتصف */
+}
+
+/* تعديل الخانة لتكون ديناميكية */
+.card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px; /* عرض ثابت */
+    padding: 10px; /* إضافة تباعد داخلي */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* توزيع العناصر بالتساوي */
+    margin: 10px auto; /* جعل البطاقة في المنتصف */
+}
+
+/* تعديل الصورة لتكون أصغر داخل إطار مع حواف دائرية */
+.card img {
+    width: 50%; /* تحديد عرض الصورة بشكل أصغر */
+    height: auto; /* الحفاظ على النسب الأصلية للصورة */
+    object-fit: cover; /* لضمان تناسب الأبعاد وعدم تشويه الصورة */
+    margin-bottom: 10px; /* مسافة أسفل الصورة */
+    margin-left: auto;  /* لتوسيط الصورة بشكل أفقي */
+    margin-right: auto; /* لتوسيط الصورة بشكل أفقي */
+    border: 2px solid #0cbc58; /* إضافة إطار أخضر حول الصورة */
+    border-radius: 12px; /* حواف دائرية للإطار */
+}
+
+/* جعل النصوص تتناسب مع المحتوى */
+.card-content h3 {
+    font-size: 18px; /* حجم العنوان */
+    margin: 0 0 10px; /* مسافة من الأعلى والأسفل */
+    text-align: center; /* توسيط النص */
+}
+
+.card-content p {
+    font-size: 14px; /* حجم النصوص */
+    color: #666;
+    line-height: 1.6; /* تباعد الأسطر */
+    text-align: center; /* توسيط النص */
+}
+
+/* تعديل تخطيط الصفوف لتكون البطاقات في المنتصف */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* المسافة بين البطاقات */
+    justify-content: center; /* توسيط البطاقات */
+    align-items: flex-start; /* جميع البطاقات تبدأ من الأعلى */
+    margin: 20px 0; /* مسافة حول القسم */
+}
+
+    /* ضبط النصوص داخل الخانات */
+    .card-content, .card-actions {
+        padding: 10px;
+    }
+
+    /* تقليل حجم النصوص لملاءمة التصميم */
+    .card-content h3 {
+        font-size: 18px; /* تقليل حجم العنوان */
+    }
+
+    .card-content p {
+        font-size: 14px; /* تصغير النص */
+        color: #666;
+        line-height: 1.4;
+    }
+
+    .card-actions {
+        padding: 10px 15px;
+        border-top: 1px solid #ddd;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card-actions a {
+        text-decoration: none;
+        color: #0c70ba;
+        font-weight: bold;
+        font-size: 14px;
+        transition: color 0.3s;
+    }
+
+    .card-actions a:hover {
+        color: #087f23;
+    }
+
+    .card-actions .icon {
+        font-size: 18px;
+        color: #0c70ba;
+    }
+
+    /* نافذة التفاصيل */
+    #details-overlay {
+        display: none;
+        position: fixed; /* لتثبيت النافذة على الشاشة */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center; /* لضبطها في الوسط */
+        z-index: 2000;
+    }
+
+    .details-content {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 300px;
+        height: 80%; /* تحديد ارتفاع النافذة */
+        overflow-y: auto; /* تمكين التمرير للنص داخل النافذة */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        top: 40px; /* إضافة مسافة من الأعلى */
+        padding-top: 40px; /* مساحة إضافية أعلى النافذة */
+    }
+
+    .details-content h3 {
+        margin-top: 0;
+        color: #0c70ba;
+        position: absolute; /* تثبيت العنوان */
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%); /* مركز العنوان أفقيًا */
+        font-size: 20px;
+    }
+
+    .details-content p {
+        margin-top: 40px; /* مسافة من العنوان */
+    }
+    
+.details-content .close-btn {
+    position: absolute;
+    top: 5px; /* رفع الزر للأعلى خارج النافذة */
+    left: 5px; /* تحريكه إلى الجهة اليسرى */
+    background: #0cbc58; /* لون الخلفية */
+    border: none;
+    font-size: 16px; /* حجم الأيقونة */
+    color: white; /* لون النص */
+    cursor: pointer;
+    width: 40px; /* عرض الزر */
+    height: 40px; /* ارتفاع الزر */
+    border-radius: 50%; /* جعل الزر دائري */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل خفيف */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.details-content .close-btn:hover {
+    background: #087f23; /* لون عند التمرير */
+    transform: scale(1.1); /* تأثير التكبير */
+}
+    /* زر الإغلاق */
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #0cbc58;
+        cursor: pointer;
+        z-index: 2001;
+    }
+
+    .close-btn:hover {
+        color: #087f23;
+    }
+    /* زر إغلاق الفيديو */
+#video-overlay .close-btn {
+    position: absolute;
+    top: -20px; /* رفع الزر للأعلى */
+    right: -20px; /* موضعه يمينًا */
+    background: #0cbc58; /* لون الخلفية الأخضر */
+    border: none;
+    font-size: 18px; /* حجم الأيقونة */
+    color: white; /* لون النص */
+    cursor: pointer;
+    width: 40px; /* عرض الزر */
+    height: 40px; /* ارتفاع الزر */
+    border-radius: 50%; /* جعل الخلفية دائرية */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ظل خفيف */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#video-overlay .close-btn:hover {
+    background: #087f23; /* لون عند التمرير */
+    transform: scale(1.1); /* تأثير التكبير عند التمرير */
+}
+
+/* القائمة الجانبية */
+#sidebar {
+    position: fixed;
+    top: 75px; /* تنزل القائمة إلى الأسفل */
+    right: -300px;
+    width: 200px; /* تقليص العرض */
+    height: calc(90% - 50px); /* ارتفاع القائمة */
+    background-color: #0cbc58;
+    color: white;
+    padding: 20px;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    transition: right 0.3s ease-in-out;
+    border-left: 5px solid #087f23; /* الحافة اليسرى */
+    border-top-left-radius: 20px; /* الحافة العلوية اليسرى دائرية */
+    border-bottom-left-radius: 20px; /* الحافة السفلية اليسرى دائرية */
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar ul li {
+    margin-bottom: 20px;
+}
+
+.sidebar-links li a {
+    display: flex;
+    align-items: center; /* يجعل النص والأيقونة بمحاذاة واحدة */
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+}
+
+.sidebar-links li a i {
+    margin-left: 10px; /* مسافة بين الأيقونة والنص */
+    font-size: 20px; /* حجم الأيقونة */
+}
+
+.sidebar-links li a:hover {
+    color: #087f23; /* تغيير لون النص والأيقونة عند التمرير */
+}
+#open-sidebar {
+  position: absolute;
+  top: 20px; /* يمكنك تعديل المسافة من الأعلى حسب رغبتك */
+  right: 10px; /* يمكنك تعديل المسافة من اليمين حسب رغبتك */
+  font-size: 25px; /* يمكنك تعديل حجم الأيقونة حسب رغبتك */
+  cursor: pointer;
+  z-index: 1000; /* للتأكد من أن الأيقونة تظهر فوق باقي المحتويات */
+}
+.close-sidebar-btn {
+    display: none; /* إزالة زر الإغلاق لأن الإغلاق يتم بالضغط على الخلفية */
+}
+
+.menu-icon {
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 10px;
+    z-index: 3000;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1999;
+}
+
+/* تصميم خلفية الضباب */
+.blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* خلفية نصف شفافة */
+    backdrop-filter: blur(8px); /* تأثير الضباب */
+    z-index: 999; /* أقل بقليل من النافذة المنبثقة */
+    display: none; /* افتراضياً مخفي */
+}
+
+/* تصميم النافذة المنبثقة */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px; /* تقليص العرض */
+    padding: 15px;
+    z-index: 1000;
+    display: none; /* افتراضياً مخفية */
+}
+
+.popup-content {
+    text-align: center;
+    margin-top: 20px; /* مساحة كافية أعلى النص */
+}
+
+.popup-content h3 {
+    font-size: 20px;
+    color: #2c3e50;
+}
+
+.popup-content p {
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.about-details {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-top: 15px;
+}
+
+.about-details li {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* تصميم زر الإغلاق */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px; /* الزاوية العلوية اليسرى */
+    width: 30px;
+    height: 30px;
+    background-color: #27ae60; /* اللون الأخضر */
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50%; /* دائرة */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+</style>
+</head>
+<body>
+<header>
+	<!-- خلفية الضباب -->
+<div id="blur-background" class="blur hidden"></div>
+
+<!-- نافذة منبثقة لتعريف الموقع -->
+<div id="about-popup" class="popup hidden">
+    <!-- زر الإغلاق -->
+    <button id="close-about-popup" class="close-btn">&times;</button>
+    <div class="popup-content">
+        <h3>عن الموقع</h3>
+        <p>
+            هذا الموقع يهدف إلى تقديم منصة شاملة تحتوي على كتب تعليمية، عروض خاصة، ودروس تعليمية تلبي احتياجات الطلاب.
+        </p>
+        <ul class="about-details">
+            <li>مكتبة شاملة تحتوي على كتب لجميع المستويات.</li>
+            <li>عروض خاصة تساعد الطلاب.</li>
+            <li>دروس تعليمية متقدمة ومبسطة.</li>
+        </ul>
+    </div>
+</div>
+
+	
+	<!-- القائمة الجانبية -->
+<div id="sidebar">
+    <ul class="sidebar-links">
+        <li><a href="go:***"><i class="fa-solid fa-book-open"></i> <span>إضافة عنصر</span></a></li>
+        <li><a href="#"><i class="fas fa-info-circle"></i> <span>عن الموقع</span></a></li>
+        <li><a href="mailto:master.n.r.l2024@gmail.com?subject= استفسار بخصوص موقعك الإلكتروني&body= السلام عليكم،"><i class="fa-solid fa-envelope"></i> <span>تواصل معنا</span></a></li>
+    </ul>
+</div>
+
+<!-- زر فتح القائمة -->
+
+
+<!-- خلفية لإغلاق القائمة -->
+<div class="overlay" id="overlay"></div>
+
+<i class="fa-solid fa-bars" id="open-sidebar"></i>
+<a href="#" onclick="returnToHome()">
+  <img src="https://i.ibb.co/vssrWcR/20250106-121432.png" alt="منصة الطالب" style="width: 230px;">
+</a>
+
+<script>
+    // الدالة لإعادة المستخدم إلى الواجهة الرئيسية
+    function returnToHome() {
+        // إظهار القسم الرئيسي فقط وإخفاء البقية
+        document.getElementById('books-section').style.display = 'block';
+        document.getElementById('offers-section').style.display = 'none';
+        document.getElementById('lessons-section').style.display = 'none';
+        return false; // منع السلوك الافتراضي للرابط
+    }
+</script>
+</header>
+
+<div class="nav-links">
+    <div id="books-link"><i class="fas fa-book"></i> الكتب</div>
+    <div id="offers-link"><i class="fas fa-tag"></i> العروض</div>
+    <div id="lessons-link"><i class="fas fa-graduation-cap"></i> الندوات</div>
+</div>
+
+<div class="container">
+<!-- قسم الكتب -->
+<section id="books-section" class="section">
+    <h2 class="section-title">
+        <i class="fas fa-book" style="margin-right: 8px;"></i> الكتب
+    </h2>
+    <div class="cards">
+        <!-- كتاب 1 -->
+        <div class="card">
+            <img src="https://africancenterlibrary.com/public/Images/4%20%281%29_1691852505.jpg" alt="كتاب 1">
+            <div class="card-content">
+                <h3>القانون الدولي الخاص</h3>
+                <p>كتاب "القانون الدولي الخاص: تنازع القوانين" يتناول قواعد تحديد القانون الواجب التطبيق عند تعارض قوانين دول مختلفة، مع استعراض المبادئ الأساسية والحلول العملية للنزاعات الدولية.</p>
+            </div>
+            <div class="card-actions">
+                <a href="https://africancenterlibrary.com/public/Library/4%20%282%29_1691852505.pdf">تحميل <i class="fas fa-download"></i></a>
+                <span class="icon"><i class="fas fa-book"></i></span>
+            </div>
+        </div>
+        <!-- كتاب 2 -->
+        <div class="card">
+            <img src="https://www.ariffino.net/wp-content/uploads/2024/10/image-211-560x315.jpg" alt="كتاب 2">
+            <div class="card-content">
+                <h3>عنوان الكتاب 2</h3>
+                <p>وصف مختصر عن الكتاب الثاني. يتناول موضوعات أخرى تتعلق بالتعليم.</p>
+            </div>
+            <div class="card-actions">
+                <a href="#">تحميل <i class="fas fa-download"></i></a>
+                <span class="icon"><i class="fas fa-book"></i></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- قسم العروض -->
+<section id="offers-section" class="section" style="display:none;">
+    <h2 class="section-title">
+        <i class="fas fa-tags" style="margin-right: 8px;"></i> العروض
+    </h2>
+    <div class="cards">
+        <!-- عرض 1 -->
+        <div class="card">
+            <img src="https://www.ariffino.net/wp-content/uploads/2024/10/image-211-560x315.jpg" alt="عرض 1">
+            <div class="card-content">
+                <h3>عنوان العرض 1</h3>
+                <p>وصف مختصر عن العرض الأول. يوضح مميزات العرض والفوائد التي يقدمها للمستخدمين.</p>
+            </div>
+            <div class="card-actions">
+                <a href="#" id="show-details-1" onclick="showDetails(1)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <span class="icon"><i class="fas fa-tag"></i></span>
+            </div>
+        </div>
+        <!-- عرض 2 -->
+        <div class="card">
+            <img src="offer2.jpg" alt="عرض 2">
+            <div class="card-content">
+                <h3>عنوان العرض 2</h3>
+                <p>وصف مختصر عن العرض الثاني. يقدم فوائد إضافية أو خصومات للمستخدمين. </p>
+            </div>
+            <div class="card-actions">
+                <a href="#" id="show-details-2" onclick="showDetails(2)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <span class="icon"><i class="fas fa-tag"></i></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- قسم الدروس التعليمية -->
+<section id="lessons-section" class="section" style="display:none;">
+    <h2 class="section-title">
+        <i class="fas fa-graduation-cap" style="margin-right: 8px;"></i> الندوات التعليمية
+    </h2>
+    <div class="cards">
+        <!-- درس 1 -->
+        <div class="card">
+            <img src="lesson1.jpg" alt="درس 1">
+            <div class="card-content">
+                <h3>عنوان الدرس 1</h3>
+                <p>وصف مختصر عن الدرس الأول. يتناول الموضوعات الأساسية في الرياضيات.</p>
+            </div>
+            <div class="card-actions">
+                <a href="#">مشاهدة <i class="fas fa-video"></i></a>
+                <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+            </div>
+        </div>
+        <!-- درس 2 -->
+        <div class="card">
+            <img src="lesson2.jpg" alt="درس 2">
+            <div class="card-content">
+                <h3>عنوان الدرس 2</h3>
+                <p>وصف مختصر عن الدرس الثاني. يقدم شرحاً لمفهوم البرمجة الأساسية.</p>
+            </div>
+            <div class="card-actions">
+                <a href="#">مشاهدة <i class="fas fa-video"></i></a>
+                <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+<!-- نافذة التفاصيل -->
+<div id="details-overlay">
+    <div class="details-content">
+        <h3 id="offer-title">تفاصيل العرض</h3>
+        <p id="offer-description">هنا يمكنك إضافة مزيد من التفاصيل حول العرض، مثل الشروط، المزايا، ومدى تأثير العرض على المستخدمين.</p>
+        <button onclick="closeDetails()" class="close-btn"><i class="fas fa-times"></i></button>
+    </div>
+</div>
+
+<script>
+	// عناصر التفاعل
+const aboutLink = document.querySelector('.sidebar-links a[href="#"]'); // رابط "عن الموقع"
+const aboutPopup = document.getElementById('about-popup'); // النافذة المنبثقة
+const blurBackground = document.getElementById('blur-background'); // خلفية الضباب
+const closeAboutPopup = document.getElementById('close-about-popup'); // زر الإغلاق
+
+// عرض النافذة المنبثقة والخلفية الضبابية
+aboutLink.addEventListener('click', function (e) {
+    e.preventDefault(); // منع الانتقال الافتراضي
+    aboutPopup.classList.remove('hidden');
+    blurBackground.classList.remove('hidden');
+    aboutPopup.style.display = 'block'; // إظهار النافذة
+    blurBackground.style.display = 'block'; // إظهار الخلفية الضبابية
+});
+
+// إغلاق النافذة وإخفاء الخلفية الضبابية
+closeAboutPopup.addEventListener('click', function () {
+    aboutPopup.style.display = 'none'; // إخفاء النافذة
+    blurBackground.style.display = 'none'; // إخفاء الخلفية الضبابية
+});
+
+	// فتح القائمة الجانبية
+document.getElementById('open-sidebar').addEventListener('click', function () {
+    document.getElementById('sidebar').style.right = '0';
+    document.getElementById('overlay').style.display = 'block';
+});
+
+// إغلاق القائمة الجانبية عند الضغط على الشاشة
+document.getElementById('overlay').addEventListener('click', function () {
+    document.getElementById('sidebar').style.right = '-300px';
+    document.getElementById('overlay').style.display = 'none';
+});
+    // الدالة لعرض التفاصيل عند الضغط على "تفاصيل"
+    function showDetails(offerId) {
+        let title = "";
+        let description = "";
+
+        if (offerId === 1) {
+    title = "تفاصيل العرض 1";
+    description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الأول.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+}
+        if (offerId === 2) {
+    title = "تفاصيل العرض 1";
+    description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الأول.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+}
+
+        // تحديث النص في نافذة التفاصيل
+        document.getElementById('offer-title').innerText = title;
+        document.getElementById('offer-description').innerHTML = description; // لاحظ استخدام innerHTML
+        
+        // عرض نافذة التفاصيل
+        document.getElementById('details-overlay').style.display = 'block';
+    }
+
+    // الدالة لإغلاق نافذة التفاصيل
+    function closeDetails() {
+        document.getElementById('details-overlay').style.display = 'none';
+    }
+
+    // التحكم في عرض الأقسام المختلفة
+    document.getElementById('books-link').addEventListener('click', function () {
+        document.getElementById('books-section').style.display = 'block';
+        document.getElementById('offers-section').style.display = 'none';
+        document.getElementById('lessons-section').style.display = 'none';
+    });
+
+    document.getElementById('offers-link').addEventListener('click', function () {
+        document.getElementById('books-section').style.display = 'none';
+        document.getElementById('offers-section').style.display = 'block';
+        document.getElementById('lessons-section').style.display = 'none';
+    });
+
+    document.getElementById('lessons-link').addEventListener('click', function () {
+        document.getElementById('books-section').style.display = 'none';
+        document.getElementById('offers-section').style.display = 'none';
+        document.getElementById('lessons-section').style.display = 'block';
+    });
+</script>
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+<!-- نافذة الفيديو -->
+<div id="video-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 2000; justify-content: center; align-items: center;">
+    <div style="position: relative; width: 90%; max-width: 600px;">
+        <button class="close-btn" onclick="closeVideo()" style="position: center; top: -50px; right: 0px; font-size: 24px; color: white; background: #27ae60; border: none; cursor: pointer;">&times;</button>
+        <video id="lesson-video" class="plyr__video-embed" controls>
+            <source src="" type="video/mp4">
+            متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    // تهيئة مشغل الفيديو
+    const player = new Plyr('#lesson-video');
+
+    // الدالة لعرض الفيديو
+    function showVideo(videoUrl) {
+        const videoElement = document.getElementById('lesson-video');
+        videoElement.querySelector('source').src = videoUrl;
+        videoElement.load(); // إعادة تحميل الفيديو مع الرابط الجديد
+        document.getElementById('video-overlay').style.display = 'flex';
+    }
+
+    // الدالة لإغلاق الفيديو
+    function closeVideo() {
+        const videoElement = document.getElementById('lesson-video');
+        videoElement.pause(); // إيقاف الفيديو
+        document.getElementById('video-overlay').style.display = 'none';
+    }
+
+    // ربط الدروس بخاصية تشغيل الفيديو
+    document.querySelectorAll('#lessons-section .card-actions a').forEach((link, index) => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault(); // منع الانتقال للرابط الافتراضي
+            const videoUrls = [
+                'https://www.w3schools.com/html/mov_bbb.mp4', // رابط فيديو الدرس 1
+                'https://www.w3schools.com/html/movie.mp4', // رابط فيديو الدرس 2
+            ];
+            showVideo(videoUrls[index]); // عرض الفيديو المناسب
+        });
+    });
+</script>
+
