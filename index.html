@@ -217,35 +217,46 @@ header h1 {
         color: #0c70ba;
     }
 
-    /* نافذة التفاصيل */
-    #details-overlay {
-        display: none;
-        position: fixed; /* لتثبيت النافذة على الشاشة */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        justify-content: center;
-        align-items: center; /* لضبطها في الوسط */
-        z-index: 2000;
-    }
+/* خلفية تغطي الجوانب فقط */
+#details-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
 
-    .details-content {
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        width: 90%;
-        max-width: 300px;
-        height: 80%; /* تحديد ارتفاع النافذة */
-        overflow-y: auto; /* تمكين التمرير للنص داخل النافذة */
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        top: 40px; /* إضافة مسافة من الأعلى */
-        padding-top: 40px; /* مساحة إضافية أعلى النافذة */
-    }
+/* تعديل محتوى التفاصيل ليكون في الوسط */
+.details-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 300px;
+    height: 80%;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    top: 40px;
+    padding-top: 40px;
+}
+
+/* خلفية الجوانب */
+#details-overlay::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
 
     .details-content h3 {
         margin-top: 0;
@@ -550,25 +561,38 @@ header h1 {
     <div class="cards">
         <!-- كتاب 1 -->
         <div class="card">
-            <img src="https://africancenterlibrary.com/public/Images/4%20%281%29_1691852505.jpg" alt="كتاب 1">
+            <img src="https://raw.githubusercontent.com/imagesloads/images/refs/heads/main/img_8d87dcfd142b23d6.jpg" alt="كتاب 1">
             <div class="card-content">
-                <h3>القانون الدولي الخاص</h3>
-                <p>كتاب "القانون الدولي الخاص: تنازع القوانين" يتناول قواعد تحديد القانون الواجب التطبيق عند تعارض قوانين دول مختلفة، مع استعراض المبادئ الأساسية والحلول العملية للنزاعات الدولية.</p>
+                <h3>حجية الحكم التحكيمي</h3>
+                <p>حجية الحكم التحكيمي وطرق الطعن فيه على ضوء القانون رقم 95.17</p>
             </div>
             <div class="card-actions">
-                <a href="https://africancenterlibrary.com/public/Library/4%20%282%29_1691852505.pdf">تحميل <i class="fas fa-download"></i></a>
+                <a href="https://h.top4top.io/f_vmjsu0iEKpCooRG3oCdn9g/1742050266/3359m2qxj0.pdf" download="حجية الحكم التحكيمي.pdf">تحميل <i class="fas fa-download"></i></a>
                 <span class="icon"><i class="fas fa-book"></i></span>
             </div>
         </div>
         <!-- كتاب 2 -->
         <div class="card">
-            <img src="https://www.ariffino.net/wp-content/uploads/2024/10/image-211-560x315.jpg" alt="كتاب 2">
+            <img src="https://raw.githubusercontent.com/imagesloads/images/refs/heads/main/img_940cfa6d88950b62.jpg" alt="كتاب 2">
             <div class="card-content">
-                <h3>عنوان الكتاب 2</h3>
-                <p>وصف مختصر عن الكتاب الثاني. يتناول موضوعات أخرى تتعلق بالتعليم.</p>
+                <h3>تنفيذ الأحكام التحكيمية</h3>
+                <p>تنفيذ الأحكام التحكيمية في ضوء مستجدات قانون 95.17 المتعلق بالتحكيم والوساطة الاتفاقية</p>
             </div>
             <div class="card-actions">
-                <a href="#">تحميل <i class="fas fa-download"></i></a>
+                <a href="https://a.top4top.io/f_pYYcK3EQ8wscAb3SjiPo_A/1742051151/3359pejfq0.pdf" download="تنفيذ الأحكام التحكيمية.pdf">تحميل <i class="fas fa-download"></i></a>
+                <span class="icon"><i class="fas fa-book"></i></span>
+            </div>
+        </div>
+    </div>
+            <!-- كتاب 3 -->
+        <div class="card">
+            <img src="https://raw.githubusercontent.com/imagesloads/images/refs/heads/main/img_932a166b553322c5.jpg" alt="كتاب 3">
+            <div class="card-content">
+                <h3>تدخل القضاء في إجراءات التحكيم</h3>
+                <p>تدخل القضاء في إجراءات التحكيم في ضوء القانون رقم 95.17 المتعلق بالتحكيم والوساطة الاتفاقية</p>
+            </div>
+            <div class="card-actions">
+                <a href="https://h.top4top.io/f_qk1Mm9GEI5VPsPq3IjFHsw/1742051639/3359dprqm0.pdf" download="كتاب القانون الدولي الخاص.pdf">تحميل <i class="fas fa-download"></i></a>
                 <span class="icon"><i class="fas fa-book"></i></span>
             </div>
         </div>
@@ -595,7 +619,7 @@ header h1 {
         </div>
         <!-- عرض 2 -->
         <div class="card">
-            <img src="offer2.jpg" alt="عرض 2">
+            <img src="https://www.ariffino.net/wp-content/uploads/2024/10/image-211-560x315.jpg" alt="عرض 2">
             <div class="card-content">
                 <h3>عنوان العرض 2</h3>
                 <p>وصف مختصر عن العرض الثاني. يقدم فوائد إضافية أو خصومات للمستخدمين. </p>
@@ -616,7 +640,7 @@ header h1 {
     <div class="cards">
         <!-- درس 1 -->
         <div class="card">
-            <img src="lesson1.jpg" alt="درس 1">
+            <img src="https://raw.githubusercontent.com/imagesloads/images/refs/heads/main/img_b1731199f72b2fa2.webp" alt="درس 1">
             <div class="card-content">
                 <h3>عنوان الدرس 1</h3>
                 <p>وصف مختصر عن الدرس الأول. يتناول الموضوعات الأساسية في الرياضيات.</p>
@@ -628,7 +652,7 @@ header h1 {
         </div>
         <!-- درس 2 -->
         <div class="card">
-            <img src="lesson2.jpg" alt="درس 2">
+            <img src="https://raw.githubusercontent.com/imagesloads/images/refs/heads/main/img_b1731199f72b2fa2.webp" alt="درس 2">
             <div class="card-content">
                 <h3>عنوان الدرس 2</h3>
                 <p>وصف مختصر عن الدرس الثاني. يقدم شرحاً لمفهوم البرمجة الأساسية.</p>
@@ -685,31 +709,32 @@ document.getElementById('overlay').addEventListener('click', function () {
     document.getElementById('overlay').style.display = 'none';
 });
     // الدالة لعرض التفاصيل عند الضغط على "تفاصيل"
-    function showDetails(offerId) {
-        let title = "";
-        let description = "";
+// الدالة لعرض التفاصيل
+function showDetails(offerId) {
+    let title = "";
+    let description = "";
 
-        if (offerId === 1) {
-    title = "تفاصيل العرض 1";
-    description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الأول.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
-}
-        if (offerId === 2) {
-    title = "تفاصيل العرض 1";
-    description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الأول.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
-}
-
-        // تحديث النص في نافذة التفاصيل
-        document.getElementById('offer-title').innerText = title;
-        document.getElementById('offer-description').innerHTML = description; // لاحظ استخدام innerHTML
-        
-        // عرض نافذة التفاصيل
-        document.getElementById('details-overlay').style.display = 'block';
+    if (offerId === 1) {
+        title = "تفاصيل العرض 1";
+        description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الأول.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+    }
+    if (offerId === 2) {
+        title = "تفاصيل العرض 2";
+        description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الثاني.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
     }
 
-    // الدالة لإغلاق نافذة التفاصيل
-    function closeDetails() {
-        document.getElementById('details-overlay').style.display = 'none';
-    }
+    // تحديث النص في نافذة التفاصيل
+    document.getElementById('offer-title').innerText = title;
+    document.getElementById('offer-description').innerHTML = description;
+
+    // عرض نافذة التفاصيل
+    document.getElementById('details-overlay').style.display = 'flex';
+}
+
+// الدالة لإغلاق نافذة التفاصيل
+function closeDetails() {
+    document.getElementById('details-overlay').style.display = 'none';
+}
 
     // التحكم في عرض الأقسام المختلفة
     document.getElementById('books-link').addEventListener('click', function () {
@@ -768,7 +793,7 @@ document.getElementById('overlay').addEventListener('click', function () {
             e.preventDefault(); // منع الانتقال للرابط الافتراضي
             const videoUrls = [
                 'https://www.w3schools.com/html/mov_bbb.mp4', // رابط فيديو الدرس 1
-                'https://www.w3schools.com/html/movie.mp4', // رابط فيديو الدرس 2
+                'https://www.w3schools.com/html/mov_bbb.mp4', // رابط فيديو الدرس 2
             ];
             showVideo(videoUrls[index]); // عرض الفيديو المناسب
         });
