@@ -521,29 +521,29 @@ header h1 {
     align-items: center;
 }
 /* تصميم نافذة التحميل */
-.download-popup {
-    display: none; /* مخفية بشكل افتراضي */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #0cbc58; /* خلفية خضراء */
-    color: white; /* لون النص */
-    padding: 15px 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 3000; /* تأكد من ظهورها فوق كل العناصر */
-    font-size: 18px;
-    font-family: 'Cairo', sans-serif;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
+   .download-popup {
+       display: none; /* مخفية بشكل افتراضي */
+       position: fixed;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       background-color: #0cbc58; /* خلفية خضراء */
+       color: white; /* لون النص */
+       padding: 15px 25px;
+       border-radius: 8px;
+       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+       z-index: 3000; /* تأكد من ظهورها فوق كل العناصر */
+       font-size: 18px;
+       font-family: 'Cairo', sans-serif;
+       align-items: center;
+       justify-content: center;
+       gap: 10px;
+   }
 
-.download-popup i {
-    color: white; /* لون الأيقونة */
-    font-size: 24px;
-}
+   .download-popup i {
+       color: white; /* لون الأيقونة */
+       font-size: 24px;
+   }
     .icons-container {
         display: flex;
         justify-content: flex-end; /* محاذاة الأيقونات إلى اليمين */
@@ -563,6 +563,61 @@ header h1 {
     .close-btn:hover, .copy-btn:hover {
         color: #087f23;
     }
+    /* أنماط الوضع الليلي */
+body.night-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.night-mode header {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+body.night-mode .nav-links {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+body.night-mode .nav-links div {
+    color: #ffffff;
+}
+
+body.night-mode .nav-links div:hover {
+    color: #0c70ba;
+}
+
+body.night-mode .card {
+    background-color: #1a1a1a;
+    border-color: #333;
+    color: #ffffff;
+}
+
+body.night-mode .card-content p {
+    color: #cccccc;
+}
+
+body.night-mode .details-content {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+body.night-mode .details-content p {
+    color: #cccccc;
+}
+
+body.night-mode .popup {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+body.night-mode .popup-content p {
+    color: #cccccc;
+}
+
+body.night-mode .about-details li {
+    color: #cccccc;
+}
 </style>
 </head>
 <body>
@@ -576,9 +631,6 @@ header h1 {
         <button onclick="closeDetails()" class="close-btn"><i class="fas fa-times"></i></button>
         <button id="copy-btn" class="copy-btn"><i class="fas fa-copy"></i></button>
         <button id="download-btn" class="copy-btn"><i class="fas fa-download"></i></button>
-        <button id="download-btn" class="copy-btn" onclick="showDownloadPopup()">
-         <i class="fas fa-download"></i>
-     </button>
     </div>
 </div>
 
@@ -587,9 +639,7 @@ header h1 {
     تم بدأ التحميل <i class="fas fa-check-circle"></i>
 </div>
 	
-
-	
-	
+		
 	<!-- خلفية الضباب -->
 <div id="blur-background" class="blur hidden"></div>
 
@@ -617,8 +667,15 @@ header h1 {
         <li><a href="https://master-nrl.github.io/page1/"><i class="fa-solid fa-book-open"></i> <span>إضافة عنصر</span></a></li>
         <li><a href="#"><i class="fas fa-info-circle"></i> <span>عن الموقع</span></a></li>
         <li><a href="mailto:master.n.r.l2024@gmail.com?subject= استفسار بخصوص موقعك الإلكتروني&body= السلام عليكم،"><i class="fa-solid fa-envelope"></i> <span>تواصل معنا</span></a></li>
+        <!-- زر الوضع الليلي -->
+        <li>
+            <a href="#" id="night-mode-toggle">
+                <i class="fas fa-moon"></i> <span>الوضع الليلي</span>
+            </a>
+        </li>
     </ul>
 </div>
+
 
 <!-- زر فتح القائمة -->
 
@@ -958,6 +1015,41 @@ header h1 {
 
 
 <script>
+	// دالة التبديل بين الوضع الليلي والوضع العادي
+document.getElementById('night-mode-toggle').addEventListener('click', function (e) {
+    e.preventDefault(); // منع الانتقال الافتراضي
+    document.body.classList.toggle('night-mode'); // تبديل الوضع الليلي
+
+    // تغيير الأيقونة بين القمر والشمس
+    const icon = this.querySelector('i');
+    if (document.body.classList.contains('night-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    }
+
+    // حفظ التفضيل في localStorage
+    if (document.body.classList.contains('night-mode')) {
+        localStorage.setItem('nightMode', 'enabled');
+    } else {
+        localStorage.setItem('nightMode', 'disabled');
+    }
+});
+
+// تحميل الوضع الليلي من localStorage عند تحميل الصفحة
+window.addEventListener('load', function () {
+    const nightMode = localStorage.getItem('nightMode');
+    if (nightMode === 'enabled') {
+        document.body.classList.add('night-mode');
+        const icon = document.querySelector('#night-mode-toggle i');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    }
+});
+	
+	
 	// عناصر التفاعل
 const aboutLink = document.querySelector('.sidebar-links a[href="#"]'); // رابط "عن الموقع"
 const aboutPopup = document.getElementById('about-popup'); // النافذة المنبثقة
@@ -1051,28 +1143,29 @@ function showDetails(offerId) {
     document.getElementById('offer-title').innerText = title;
     document.getElementById('offer-description').innerHTML = description;
 
-    // تحديث رابط التحميل
+    // تحديث زر التحميل لبدء التحميل مباشرة
     document.getElementById('download-btn').onclick = function () {
-        window.location.href = downloadUrl; // بدء التحميل
+        window.location.href = downloadUrl; // بدء التحميل مباشرة
     };
 
     // عرض نافذة التفاصيل
     document.getElementById('details-overlay').style.display = 'flex';
 }
 
+// دالة لعرض نافذة التحميل
+   function showDownloadPopup() {
+       const popup = document.getElementById('download-popup');
+       popup.style.display = 'flex'; // عرض النافذة
+
+       // إخفاء النافذة بعد 3 ثوانٍ
+       setTimeout(() => {
+           popup.style.display = 'none';
+       }, 3000); // 3000 ميلي ثانية = 3 ثوانٍ
+   }
+
 // دالة لإغلاق نافذة التفاصيل
 function closeDetails() {
     document.getElementById('details-overlay').style.display = 'none';
-}
-// دالة لعرض نافذة التحميل
-function showDownloadPopup() {
-    const popup = document.getElementById('download-popup');
-    popup.style.display = 'flex'; // عرض النافذة
-
-    // إخفاء النافذة بعد 3 ثوانٍ
-    setTimeout(() => {
-        popup.style.display = 'none';
-    }, 3000); // 3000 ميلي ثانية = 3 ثوانٍ
 }
 
 // دالة لنسخ النص
@@ -1084,7 +1177,19 @@ function copyText() {
         alert("حدث خطأ أثناء النسخ!");
     });
 }
+// ربط أزرار التحميل في قسم العروض بالدالة
+document.querySelectorAll('#offers-section .card-actions a').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault(); // منع الانتقال الافتراضي
+        showDownloadPopup(); // عرض النافذة المنبثقة
 
+        // بدء التحميل بعد عرض النافذة
+        const fileUrl = this.href;
+        setTimeout(() => {
+            window.location.href = fileUrl; // بدء التحميل
+        }, 1000); // تأخير التحميل لمدة ثانية واحدة
+    });
+});
 // ربط زر النسخ بالدالة
 document.getElementById('copy-btn').addEventListener('click', copyText);
 
