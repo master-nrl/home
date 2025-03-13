@@ -541,6 +541,7 @@ header h1 {
         <button id="download-btn" class="copy-btn"><i class="fas fa-download"></i></button>
     </div>
 </div>
+
 	<!-- نافذة التحميل -->
 <div id="download-popup" class="download-popup">
     <i class="fas fa-check-circle"></i> تم بدأ التحميل
@@ -614,27 +615,207 @@ header h1 {
         <i class="fas fa-tags" style="margin-right: 8px;"></i> العروض
     </h2>
     <div class="cards">
+        <!-- عرض 1: المسطرة المدنية مع التعمق -->
+        <div class="card" onclick="navigateToSection('civil-procedure')">
+            <img src="https://via.placeholder.com/300x200" alt="المسطرة المدنية مع التعمق">
+            <div class="card-content">
+                <h3>المسطرة المدنية مع التعمق</h3>
+                <p>وصف مختصر عن المسطرة المدنية مع التعمق.</p>
+            </div>
+        </div>
+        <!-- عرض 2: المسطرة الجنائية مع التعمق -->
+        <div class="card" onclick="navigateToSection('criminal-procedure')">
+            <img src="https://via.placeholder.com/300x200" alt="المسطرة الجنائية مع التعمق">
+            <div class="card-content">
+                <h3>المسطرة الجنائية مع التعمق</h3>
+                <p>وصف مختصر عن المسطرة الجنائية مع التعمق.</p>
+            </div>
+        </div>
+        <!-- عرض 3: الوسائل الإلكترونية البديلة لحل المنازعات -->
+        <div class="card" onclick="navigateToSection('alternative-dispute-resolution')">
+            <img src="https://via.placeholder.com/300x200" alt="الوسائل الإلكترونية البديلة لحل المنازعات">
+            <div class="card-content">
+                <h3>الوسائل الإلكترونية البديلة لحل المنازعات</h3>
+                <p>وصف مختصر عن الوسائل الإلكترونية البديلة لحل المنازعات.</p>
+            </div>
+        </div>
+        <!-- عرض 4: القانون الدولي الخاص -->
+        <div class="card" onclick="navigateToSection('international-private-law')">
+            <img src="https://via.placeholder.com/300x200" alt="القانون الدولي الخاص">
+            <div class="card-content">
+                <h3>القانون الدولي الخاص</h3>
+                <p>وصف مختصر عن القانون الدولي الخاص.</p>
+            </div>
+        </div>
+        <!-- عرض 5: نظرية العقد الإلكتروني -->
+        <div class="card" onclick="navigateToSection('electronic-contract-theory')">
+            <img src="https://via.placeholder.com/300x200" alt="نظرية العقد الإلكتروني">
+            <div class="card-content">
+                <h3>نظرية العقد الإلكتروني</h3>
+                <p>وصف مختصر عن نظرية العقد الإلكتروني.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- قسم المسطرة المدنية مع التعمق -->
+<section id="civil-procedure-section" class="section" style="display: none;">
+    <h2 class="section-title">
+        <i class="fas fa-tags" style="margin-right: 8px;"></i> المسطرة المدنية مع التعمق
+    </h2>
+    <div class="cards">
         <!-- عرض 1 -->
         <div class="card">
-            <img src="https://www.ariffino.net/wp-content/uploads/2024/10/image-211-560x315.jpg" alt="عرض 1">
+            <img src="https://via.placeholder.com/300x200" alt="عرض 1">
             <div class="card-content">
-                <h3>عنوان العرض 1</h3>
-                <p>وصف مختصر عن العرض الأول. يوضح مميزات العرض والفوائد التي يقدمها للمستخدمين.</p>
+                <h3>عرض المسطرة المدنية 1</h3>
+                <p>وصف مختصر عن العرض الأول في المسطرة المدنية.</p>
             </div>
             <div class="card-actions">
-                <a href="#" id="show-details-1" onclick="showDetails(1)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <a href="#" onclick="showDetails(1)">تفاصيل <i class="fas fa-info-circle"></i></a>
                 <span class="icon"><i class="fas fa-tag"></i></span>
             </div>
         </div>
         <!-- عرض 2 -->
         <div class="card">
-            <img src="https://www.ariffino.net/wp-content/uploads/2024/10/image-211-560x315.jpg" alt="عرض 2">
+            <img src="https://via.placeholder.com/300x200" alt="عرض 2">
             <div class="card-content">
-                <h3>عنوان العرض 2</h3>
-                <p>وصف مختصر عن العرض الثاني. يقدم فوائد إضافية أو خصومات للمستخدمين. </p>
+                <h3>عرض المسطرة المدنية 2</h3>
+                <p>وصف مختصر عن العرض الثاني في المسطرة المدنية.</p>
             </div>
             <div class="card-actions">
-                <a href="#" id="show-details-2" onclick="showDetails(2)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <a href="#" onclick="showDetails(2)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <span class="icon"><i class="fas fa-tag"></i></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- قسم المسطرة الجنائية مع التعمق -->
+<section id="criminal-procedure-section" class="section" style="display: none;">
+    <h2 class="section-title">
+        <i class="fas fa-tags" style="margin-right: 8px;"></i> المسطرة الجنائية مع التعمق
+    </h2>
+    <div class="cards">
+        <!-- عرض 1 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="عرض 1">
+            <div class="card-content">
+                <h3>عرض المسطرة الجنائية 1</h3>
+                <p>وصف مختصر عن العرض الأول في المسطرة الجنائية.</p>
+            </div>
+            <div class="card-actions">
+                <a href="#" onclick="showDetails(3)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <span class="icon"><i class="fas fa-tag"></i></span>
+            </div>
+        </div>
+        <!-- عرض 2 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="عرض 2">
+            <div class="card-content">
+                <h3>عرض المسطرة الجنائية 2</h3>
+                <p>وصف مختصر عن العرض الثاني في المسطرة الجنائية.</p>
+            </div>
+            <div class="card-actions">
+                <a href="#" onclick="showDetails(4)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <span class="icon"><i class="fas fa-tag"></i></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- قسم الوسائل الإلكترونية البديلة لحل المنازعات -->
+<section id="alternative-dispute-resolution-section" class="section" style="display: none;">
+    <h2 class="section-title">
+        <i class="fas fa-tags" style="margin-right: 8px;"></i> الوسائل الإلكترونية البديلة لحل المنازعات
+    </h2>
+    <div class="cards">
+        <!-- عرض 1 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="عرض 1">
+            <div class="card-content">
+                <h3>عرض الوسائل الإلكترونية 1</h3>
+                <p>وصف مختصر عن العرض الأول في الوسائل الإلكترونية.</p>
+            </div>
+            <div class="card-actions">
+                <a href="#" onclick="showDetails(5)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <span class="icon"><i class="fas fa-tag"></i></span>
+            </div>
+        </div>
+        <!-- عرض 2 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="عرض 2">
+            <div class="card-content">
+                <h3>عرض الوسائل الإلكترونية 2</h3>
+                <p>وصف مختصر عن العرض الثاني في الوسائل الإلكترونية.</p>
+            </div>
+            <div class="card-actions">
+                <a href="#" onclick="showDetails(6)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <span class="icon"><i class="fas fa-tag"></i></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- قسم القانون الدولي الخاص -->
+<section id="international-private-law-section" class="section" style="display: none;">
+    <h2 class="section-title">
+        <i class="fas fa-tags" style="margin-right: 8px;"></i> القانون الدولي الخاص
+    </h2>
+    <div class="cards">
+        <!-- عرض 1 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="عرض 1">
+            <div class="card-content">
+                <h3>عرض القانون الدولي الخاص 1</h3>
+                <p>وصف مختصر عن العرض الأول في القانون الدولي الخاص.</p>
+            </div>
+            <div class="card-actions">
+                <a href="#" onclick="showDetails(7)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <span class="icon"><i class="fas fa-tag"></i></span>
+            </div>
+        </div>
+        <!-- عرض 2 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="عرض 2">
+            <div class="card-content">
+                <h3>عرض القانون الدولي الخاص 2</h3>
+                <p>وصف مختصر عن العرض الثاني في القانون الدولي الخاص.</p>
+            </div>
+            <div class="card-actions">
+                <a href="#" onclick="showDetails(8)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <span class="icon"><i class="fas fa-tag"></i></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- قسم نظرية العقد الإلكتروني -->
+<section id="electronic-contract-theory-section" class="section" style="display: none;">
+    <h2 class="section-title">
+        <i class="fas fa-tags" style="margin-right: 8px;"></i> نظرية العقد الإلكتروني
+    </h2>
+    <div class="cards">
+        <!-- عرض 1 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="عرض 1">
+            <div class="card-content">
+                <h3>عرض نظرية العقد الإلكتروني 1</h3>
+                <p>وصف مختصر عن العرض الأول في نظرية العقد الإلكتروني.</p>
+            </div>
+            <div class="card-actions">
+                <a href="#" onclick="showDetails(9)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <span class="icon"><i class="fas fa-tag"></i></span>
+            </div>
+        </div>
+        <!-- عرض 2 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="عرض 2">
+            <div class="card-content">
+                <h3>عرض نظرية العقد الإلكتروني 2</h3>
+                <p>وصف مختصر عن العرض الثاني في نظرية العقد الإلكتروني.</p>
+            </div>
+            <div class="card-actions">
+                <a href="#" onclick="showDetails(10)">تفاصيل <i class="fas fa-info-circle"></i></a>
                 <span class="icon"><i class="fas fa-tag"></i></span>
             </div>
         </div>
@@ -769,14 +950,54 @@ function showDetails(offerId) {
     let downloadUrl = "";
 
     if (offerId === 1) {
-        title = "تفاصيل العرض 1";
-        description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الأول.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
-        downloadUrl = "https://example.com/path/to/offer1.pdf"; // رابط تحميل العرض 1
+        title = "عرض المسطرة المدنية 1";
+        description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الأول في المسطرة المدنية.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+        downloadUrl = "https://example.com/path/to/civil-procedure-1.pdf"; // رابط تحميل العرض 1
     }
     if (offerId === 2) {
-        title = "تفاصيل العرض 2";
-        description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الثاني.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
-        downloadUrl = "https://example.com/path/to/offer2.pdf"; // رابط تحميل العرض 2
+        title = "عرض المسطرة المدنية 2";
+        description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الثاني في المسطرة المدنية.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+        downloadUrl = "https://example.com/path/to/civil-procedure-2.pdf"; // رابط تحميل العرض 2
+    }
+    if (offerId === 3) {
+        title = "عرض المسطرة الجنائية 1";
+        description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الأول في المسطرة الجنائية.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+        downloadUrl = "https://example.com/path/to/criminal-procedure-1.pdf"; // رابط تحميل العرض 3
+    }
+    if (offerId === 4) {
+        title = "عرض المسطرة الجنائية 2";
+        description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الثاني في المسطرة الجنائية.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+        downloadUrl = "https://example.com/path/to/criminal-procedure-2.pdf"; // رابط تحميل العرض 4
+    }
+    if (offerId === 5) {
+        title = "عرض الوسائل الإلكترونية البديلة لحل المنازعات 1";
+        description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الأول في الوسائل الإلكترونية البديلة لحل المنازعات.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+        downloadUrl = "https://example.com/path/to/alternative-dispute-resolution-1.pdf"; // رابط تحميل العرض 5
+    }
+    if (offerId === 6) {
+        title = "عرض الوسائل الإلكترونية البديلة لحل المنازعات 2";
+        description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الثاني في الوسائل الإلكترونية البديلة لحل المنازعات.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+        downloadUrl = "https://example.com/path/to/alternative-dispute-resolution-2.pdf"; // رابط تحميل العرض 6
+    }
+    if (offerId === 7) {
+        title = "عرض القانون الدولي الخاص 1";
+        description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الأول في القانون الدولي الخاص.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+        downloadUrl = "https://example.com/path/to/international-private-law-1.pdf"; // رابط تحميل العرض 7
+    }
+    if (offerId === 8) {
+        title = "عرض القانون الدولي الخاص 2";
+        description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الثاني في القانون الدولي الخاص.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+        downloadUrl = "https://example.com/path/to/international-private-law-2.pdf"; // رابط تحميل العرض 8
+    }
+    if (offerId === 9) {
+        title = "عرض نظرية العقد الإلكتروني 1";
+        description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الأول في نظرية العقد الإلكتروني.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+        downloadUrl = "https://example.com/path/to/electronic-contract-theory-1.pdf"; // رابط تحميل العرض 9
+    }
+    if (offerId === 10) {
+        title = "عرض نظرية العقد الإلكتروني 2";
+        description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الثاني في نظرية العقد الإلكتروني.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+        downloadUrl = "https://example.com/path/to/electronic-contract-theory-2.pdf"; // رابط تحميل العرض 10
     }
 
     // تحديث النص في نافذة التفاصيل
@@ -809,24 +1030,39 @@ function copyText() {
 
 // ربط زر النسخ بالدالة
 document.getElementById('copy-btn').addEventListener('click', copyText);
-    // التحكم في عرض الأقسام المختلفة
-    document.getElementById('books-link').addEventListener('click', function () {
-        document.getElementById('books-section').style.display = 'block';
-        document.getElementById('offers-section').style.display = 'none';
-        document.getElementById('lessons-section').style.display = 'none';
-    });
 
-    document.getElementById('offers-link').addEventListener('click', function () {
-        document.getElementById('books-section').style.display = 'none';
-        document.getElementById('offers-section').style.display = 'block';
-        document.getElementById('lessons-section').style.display = 'none';
-    });
+// دالة للتنقل بين الأقسام
+function navigateToSection(sectionId) {
+    // إخفاء جميع الأقسام
+    document.getElementById('offers-section').style.display = 'none';
+    document.getElementById('civil-procedure-section').style.display = 'none';
+    document.getElementById('criminal-procedure-section').style.display = 'none';
+    document.getElementById('alternative-dispute-resolution-section').style.display = 'none';
+    document.getElementById('international-private-law-section').style.display = 'none';
+    document.getElementById('electronic-contract-theory-section').style.display = 'none';
+    document.getElementById('books-section').style.display = 'none';
+    document.getElementById('lessons-section').style.display = 'none';
 
-    document.getElementById('lessons-link').addEventListener('click', function () {
-        document.getElementById('books-section').style.display = 'none';
-        document.getElementById('offers-section').style.display = 'none';
-        document.getElementById('lessons-section').style.display = 'block';
-    });
+    // إظهار القسم المحدد
+    if (sectionId === 'books' || sectionId === 'lessons') {
+        document.getElementById(`${sectionId}-section`).style.display = 'block';
+    } else {
+        document.getElementById(`${sectionId}-section`).style.display = 'block';
+    }
+}
+
+// التحكم في عرض الأقسام المختلفة
+document.getElementById('books-link').addEventListener('click', function () {
+    navigateToSection('books');
+});
+
+document.getElementById('offers-link').addEventListener('click', function () {
+    navigateToSection('offers');
+});
+
+document.getElementById('lessons-link').addEventListener('click', function () {
+    navigateToSection('lessons');
+});
 </script>
 <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 <!-- نافذة الفيديو -->
@@ -895,5 +1131,7 @@ document.querySelectorAll('#books-section .card-actions a').forEach(link => {
             showVideo(videoUrls[index]); // عرض الفيديو المناسب
         });
     });
+    
+
 </script>
 
