@@ -217,7 +217,7 @@ header h1 {
         color: #0c70ba;
     }
 
-/* خلفية تغطي الجوانب فقط */
+/* نافذة التفاصيل */
 #details-overlay {
     display: none;
     position: fixed;
@@ -225,52 +225,65 @@ header h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.9); /* خلفية داكنة */
     z-index: 2000;
     justify-content: center;
     align-items: center;
 }
 
-/* تعديل محتوى التفاصيل ليكون في الوسط */
 .details-content {
     background: white;
     padding: 30px;
     border-radius: 10px;
-    width: 100%;
-    max-width: 300px;
-    height: 80%;
-    overflow-y: auto;
+    width: 90%;
+    max-width: 800px; /* زيادة العرض */
+    height: 90%; /* زيادة الارتفاع */
+    overflow-y: auto; /* تمكين التمرير */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
-    top: 40px;
-    padding-top: 40px;
 }
 
-/* خلفية الجوانب */
-#details-overlay::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: -1;
+.details-content h3 {
+    margin-top: 0;
+    color: #0c70ba;
+    font-size: 24px; /* حجم العنوان */
+    text-align: center;
 }
 
-    .details-content h3 {
-        margin-top: 0;
-        color: #0c70ba;
-        position: absolute; /* تثبيت العنوان */
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%); /* مركز العنوان أفقيًا */
-        font-size: 20px;
-    }
+.details-content p {
+    font-size: 16px; /* تصغير حجم النص */
+    color: #555;
+    line-height: 1.6;
+    margin: 20px 0;
+}
 
-    .details-content p {
-        margin-top: 40px; /* مسافة من العنوان */
-    }
+/* زر النسخ */
+.copy-btn, #download-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #0cbc58;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#download-btn {
+    right: 60px; /* تعديل الموضع ليكون بجانب زر النسخ */
+}
+.copy-btn:hover {
+    background-color: #099c48;
+}
+
+.copy-btn i {
+    font-size: 16px;
+}
     
 .details-content .close-btn {
     position: absolute;
@@ -489,10 +502,52 @@ header h1 {
     justify-content: center;
     align-items: center;
 }
+/* تصميم نافذة التحميل */
+.download-popup {
+    display: none; /* مخفية بشكل افتراضي */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #0cbc58; /* خلفية خضراء */
+    color: white; /* لون النص */
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 3000; /* تأكد من ظهورها فوق كل العناصر */
+    font-size: 18px;
+    font-family: 'Cairo', sans-serif;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.download-popup i {
+    color: white; /* لون الأيقونة */
+    font-size: 24px;
+}
 </style>
 </head>
 <body>
 <header>
+	
+	<!-- نافذة التفاصيل -->
+<div id="details-overlay">
+    <div class="details-content">
+        <h3 id="offer-title">تفاصيل العرض</h3>
+        <p id="offer-description">هنا يمكنك إضافة مزيد من التفاصيل حول العرض، مثل الشروط، المزايا، ومدى تأثير العرض على المستخدمين.</p>
+        <button onclick="closeDetails()" class="close-btn"><i class="fas fa-times"></i></button>
+        <button id="copy-btn" class="copy-btn"><i class="fas fa-copy"></i></button>
+        <button id="download-btn" class="copy-btn"><i class="fas fa-download"></i></button>
+    </div>
+</div>
+	<!-- نافذة التحميل -->
+<div id="download-popup" class="download-popup">
+    <i class="fas fa-check-circle"></i> تم بدأ التحميل
+</div>
+	
+	
+	
 	<!-- خلفية الضباب -->
 <div id="blur-background" class="blur hidden"></div>
 
@@ -707,34 +762,53 @@ document.getElementById('overlay').addEventListener('click', function () {
     document.getElementById('sidebar').style.right = '-300px';
     document.getElementById('overlay').style.display = 'none';
 });
-    // الدالة لعرض التفاصيل عند الضغط على "تفاصيل"
-// الدالة لعرض التفاصيل
+// دالة لعرض تفاصيل العرض
 function showDetails(offerId) {
     let title = "";
     let description = "";
+    let downloadUrl = "";
 
     if (offerId === 1) {
         title = "تفاصيل العرض 1";
         description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الأول.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+        downloadUrl = "https://example.com/path/to/offer1.pdf"; // رابط تحميل العرض 1
     }
     if (offerId === 2) {
         title = "تفاصيل العرض 2";
         description = "هنا يمكنك إضافة <b>مزيد من التفاصيل</b> حول العرض الثاني.<br>مثل:<br>- الشروط<br>- المزايا<br>- مدى تأثير العرض على المستخدمين.";
+        downloadUrl = "https://example.com/path/to/offer2.pdf"; // رابط تحميل العرض 2
     }
 
     // تحديث النص في نافذة التفاصيل
     document.getElementById('offer-title').innerText = title;
     document.getElementById('offer-description').innerHTML = description;
 
+    // تحديث رابط التحميل
+    document.getElementById('download-btn').onclick = function () {
+        window.location.href = downloadUrl; // بدء التحميل
+    };
+
     // عرض نافذة التفاصيل
     document.getElementById('details-overlay').style.display = 'flex';
 }
 
-// الدالة لإغلاق نافذة التفاصيل
+// دالة لإغلاق نافذة التفاصيل
 function closeDetails() {
     document.getElementById('details-overlay').style.display = 'none';
 }
 
+// دالة لنسخ النص
+function copyText() {
+    const description = document.getElementById('offer-description').innerText;
+    navigator.clipboard.writeText(description).then(() => {
+        alert("تم نسخ النص بنجاح!");
+    }).catch(() => {
+        alert("حدث خطأ أثناء النسخ!");
+    });
+}
+
+// ربط زر النسخ بالدالة
+document.getElementById('copy-btn').addEventListener('click', copyText);
     // التحكم في عرض الأقسام المختلفة
     document.getElementById('books-link').addEventListener('click', function () {
         document.getElementById('books-section').style.display = 'block';
@@ -768,6 +842,30 @@ function closeDetails() {
 </body>
 </html>
 <script>
+	// دالة لعرض نافذة التحميل
+function showDownloadPopup() {
+    const popup = document.getElementById('download-popup');
+    popup.style.display = 'flex'; // عرض النافذة
+
+    // إخفاء النافذة بعد 3 ثوانٍ
+    setTimeout(() => {
+        popup.style.display = 'none';
+    }, 3000); // 3000 ميلي ثانية = 3 ثوانٍ
+}
+
+// ربط أزرار التحميل بالدالة
+document.querySelectorAll('#books-section .card-actions a').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault(); // منع الانتقال الافتراضي
+        showDownloadPopup(); // عرض النافذة المنبثقة
+
+        // بدء التحميل بعد عرض النافذة
+        const fileUrl = this.href;
+        setTimeout(() => {
+            window.location.href = fileUrl; // بدء التحميل
+        }, 1000); // تأخير التحميل لمدة ثانية واحدة
+    });
+});
     // تهيئة مشغل الفيديو
     const player = new Plyr('#lesson-video');
 
