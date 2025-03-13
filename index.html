@@ -128,7 +128,7 @@ header h1 {
 /* تعديل الخانة لتكون ديناميكية */
 .card {
     background: #fff;
-    border: 1px solid #ddd;
+    border: 2px solid #0cbc58; /* إضافة إطار أخضر */
     border-radius: 8px;
     width: 300px; /* عرض ثابت */
     padding: 10px; /* إضافة تباعد داخلي */
@@ -138,6 +138,7 @@ header h1 {
     flex-direction: column;
     justify-content: space-between; /* توزيع العناصر بالتساوي */
     margin: 10px auto; /* جعل البطاقة في المنتصف */
+    height: 100%; /* جعل جميع الخانات بنفس الارتفاع */
 }
 
 /* تعديل الصورة لتكون أصغر داخل إطار مع حواف دائرية */
@@ -148,11 +149,18 @@ header h1 {
     margin-bottom: 10px; /* مسافة أسفل الصورة */
     margin-left: auto;  /* لتوسيط الصورة بشكل أفقي */
     margin-right: auto; /* لتوسيط الصورة بشكل أفقي */
-    border: 2px solid #0cbc58; /* إضافة إطار أخضر حول الصورة */
+    border: 2px solid #ddd; /* إضافة إطار أخضر حول الصورة */
     border-radius: 12px; /* حواف دائرية للإطار */
 }
 
 /* جعل النصوص تتناسب مع المحتوى */
+.card-content {
+    flex-grow: 1; /* جعل المحتوى يتمدد لملء المساحة المتاحة */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* توزيع العناصر داخليًا */
+}
+
 .card-content h3 {
     font-size: 18px; /* حجم العنوان */
     margin: 0 0 10px; /* مسافة من الأعلى والأسفل */
@@ -164,6 +172,7 @@ header h1 {
     color: #666;
     line-height: 1.6; /* تباعد الأسطر */
     text-align: center; /* توسيط النص */
+    flex-grow: 1; /* جعل النص يتمدد لملء المساحة المتاحة */
 }
 
 /* تعديل تخطيط الصفوف لتكون البطاقات في المنتصف */
@@ -172,51 +181,60 @@ header h1 {
     flex-wrap: wrap;
     gap: 20px; /* المسافة بين البطاقات */
     justify-content: center; /* توسيط البطاقات */
-    align-items: flex-start; /* جميع البطاقات تبدأ من الأعلى */
+    align-items: stretch; /* جعل جميع البطاقات بنفس الارتفاع */
     margin: 20px 0; /* مسافة حول القسم */
 }
 
-    /* ضبط النصوص داخل الخانات */
-    .card-content, .card-actions {
-        padding: 10px;
-    }
+/* ضبط النصوص داخل الخانات */
+.card-content, .card-actions {
+    padding: 10px;
+}
 
-    /* تقليل حجم النصوص لملاءمة التصميم */
-    .card-content h3 {
-        font-size: 18px; /* تقليل حجم العنوان */
-    }
+/* جعل النصوص تتناسب مع المحتوى */
+.card-content h3 {
+    font-size: 16px; /* تقليل حجم العنوان من 18px إلى 16px */
+    margin: 0 0 8px; /* تقليل المسافة من الأعلى والأسفل */
+    text-align: center; /* توسيط النص */
+}
 
-    .card-content p {
-        font-size: 14px; /* تصغير النص */
-        color: #666;
-        line-height: 1.4;
-    }
+.card-content p {
+    font-size: 12px; /* تقليل حجم النص من 14px إلى 12px */
+    color: #666;
+    line-height: 1.4; /* تقليل تباعد الأسطر من 1.6 إلى 1.4 */
+    text-align: center; /* توسيط النص */
+    flex-grow: 1; /* جعل النص يتمدد لملء المساحة المتاحة */
+}
 
-    .card-actions {
-        padding: 10px 15px;
-        border-top: 1px solid #ddd;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+.card-actions {
+    padding: 10px 15px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between; /* توزيع العناصر بين الطرفين */
+    align-items: center;
+}
 
-    .card-actions a {
-        text-decoration: none;
-        color: #0c70ba;
-        font-weight: bold;
-        font-size: 14px;
-        transition: color 0.3s;
-    }
+.card-actions a {
+    text-decoration: none;
+    color: #0c70ba;
+    font-weight: bold;
+    font-size: 14px;
+    transition: color 0.3s;
+}
 
-    .card-actions a:hover {
-        color: #087f23;
-    }
+.card-actions a:hover {
+    color: #087f23;
+}
 
-    .card-actions .icon {
-        font-size: 18px;
-        color: #0c70ba;
-    }
+.card-actions .icon {
+    font-size: 18px;
+    color: #0c70ba;
+    margin-right: auto; /* نقل الأيقونة إلى الطرف الأيسر */
+}
 
+.card-actions .icon.right {
+    margin-left: auto; /* نقل الأيقونة الثانية إلى الطرف الأيمن */
+    margin-right: 0; /* إزالة الهامش الأيمن */
+}
 /* نافذة التفاصيل */
 #details-overlay {
     display: none;
@@ -244,7 +262,7 @@ header h1 {
 }
 
 .details-content h3 {
-    margin-top: 0;
+    margin-top: 30;
     color: #0c70ba;
     font-size: 24px; /* حجم العنوان */
     text-align: center;
@@ -526,6 +544,25 @@ header h1 {
     color: white; /* لون الأيقونة */
     font-size: 24px;
 }
+    .icons-container {
+        display: flex;
+        justify-content: flex-end; /* محاذاة الأيقونات إلى اليمين */
+        gap: 10px; /* مسافة بين الأيقونات */
+        margin-bottom: 10px; /* مسافة أسفل الأيقونات */
+    }
+
+    /* تصميم الأزرار */
+    .close-btn, .copy-btn {
+        background: none;
+        border: none;
+        font-size: 18px;
+        color: #0cbc58;
+        cursor: pointer;
+    }
+
+    .close-btn:hover, .copy-btn:hover {
+        color: #087f23;
+    }
 </style>
 </head>
 <body>
@@ -539,14 +576,18 @@ header h1 {
         <button onclick="closeDetails()" class="close-btn"><i class="fas fa-times"></i></button>
         <button id="copy-btn" class="copy-btn"><i class="fas fa-copy"></i></button>
         <button id="download-btn" class="copy-btn"><i class="fas fa-download"></i></button>
+        <button id="download-btn" class="copy-btn" onclick="showDownloadPopup()">
+         <i class="fas fa-download"></i>
+     </button>
     </div>
 </div>
 
 	<!-- نافذة التحميل -->
 <div id="download-popup" class="download-popup">
-    <i class="fas fa-check-circle"></i> تم بدأ التحميل
+    تم بدأ التحميل <i class="fas fa-check-circle"></i>
 </div>
 	
+
 	
 	
 	<!-- خلفية الضباب -->
@@ -617,42 +658,47 @@ header h1 {
     <div class="cards">
         <!-- عرض 1: المسطرة المدنية مع التعمق -->
         <div class="card" onclick="navigateToSection('civil-procedure')">
-            <img src="https://via.placeholder.com/300x200" alt="المسطرة المدنية مع التعمق">
+            <div class="card-icon">
+                <i class="fas fa-balance-scale"></i> <!-- أيقونة المسطرة المدنية -->
+            </div>
             <div class="card-content">
                 <h3>المسطرة المدنية مع التعمق</h3>
-                <p>وصف مختصر عن المسطرة المدنية مع التعمق.</p>
             </div>
         </div>
         <!-- عرض 2: المسطرة الجنائية مع التعمق -->
         <div class="card" onclick="navigateToSection('criminal-procedure')">
-            <img src="https://via.placeholder.com/300x200" alt="المسطرة الجنائية مع التعمق">
+            <div class="card-icon">
+                <i class="fas fa-gavel"></i> <!-- أيقونة المسطرة الجنائية -->
+            </div>
             <div class="card-content">
                 <h3>المسطرة الجنائية مع التعمق</h3>
-                <p>وصف مختصر عن المسطرة الجنائية مع التعمق.</p>
             </div>
         </div>
         <!-- عرض 3: الوسائل الإلكترونية البديلة لحل المنازعات -->
         <div class="card" onclick="navigateToSection('alternative-dispute-resolution')">
-            <img src="https://via.placeholder.com/300x200" alt="الوسائل الإلكترونية البديلة لحل المنازعات">
+            <div class="card-icon">
+                <i class="fas fa-handshake"></i> <!-- أيقونة الوسائل الإلكترونية -->
+            </div>
             <div class="card-content">
                 <h3>الوسائل الإلكترونية البديلة لحل المنازعات</h3>
-                <p>وصف مختصر عن الوسائل الإلكترونية البديلة لحل المنازعات.</p>
             </div>
         </div>
         <!-- عرض 4: القانون الدولي الخاص -->
         <div class="card" onclick="navigateToSection('international-private-law')">
-            <img src="https://via.placeholder.com/300x200" alt="القانون الدولي الخاص">
+            <div class="card-icon">
+                <i class="fas fa-globe"></i> <!-- أيقونة القانون الدولي الخاص -->
+            </div>
             <div class="card-content">
                 <h3>القانون الدولي الخاص</h3>
-                <p>وصف مختصر عن القانون الدولي الخاص.</p>
             </div>
         </div>
         <!-- عرض 5: نظرية العقد الإلكتروني -->
         <div class="card" onclick="navigateToSection('electronic-contract-theory')">
-            <img src="https://via.placeholder.com/300x200" alt="نظرية العقد الإلكتروني">
+            <div class="card-icon">
+                <i class="fas fa-file-contract"></i> <!-- أيقونة نظرية العقد الإلكتروني -->
+            </div>
             <div class="card-content">
                 <h3>نظرية العقد الإلكتروني</h3>
-                <p>وصف مختصر عن نظرية العقد الإلكتروني.</p>
             </div>
         </div>
     </div>
@@ -671,7 +717,7 @@ header h1 {
                 <p>وصف مختصر عن العرض الأول في المسطرة المدنية.</p>
             </div>
             <div class="card-actions">
-                <a href="#" onclick="showDetails(1)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <a href="#" onclick="showDetails(1)">تفاصيل <i class="fas fa-eye"></i></a>
                 <span class="icon"><i class="fas fa-tag"></i></span>
             </div>
         </div>
@@ -683,7 +729,7 @@ header h1 {
                 <p>وصف مختصر عن العرض الثاني في المسطرة المدنية.</p>
             </div>
             <div class="card-actions">
-                <a href="#" onclick="showDetails(2)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <a href="#" onclick="showDetails(1)">تفاصيل <i class="fas fa-eye"></i></a>
                 <span class="icon"><i class="fas fa-tag"></i></span>
             </div>
         </div>
@@ -704,7 +750,7 @@ header h1 {
                 <p>وصف مختصر عن العرض الأول في المسطرة الجنائية.</p>
             </div>
             <div class="card-actions">
-                <a href="#" onclick="showDetails(3)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <a href="#" onclick="showDetails(1)">تفاصيل <i class="fas fa-eye"></i></a>
                 <span class="icon"><i class="fas fa-tag"></i></span>
             </div>
         </div>
@@ -716,7 +762,7 @@ header h1 {
                 <p>وصف مختصر عن العرض الثاني في المسطرة الجنائية.</p>
             </div>
             <div class="card-actions">
-                <a href="#" onclick="showDetails(4)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <a href="#" onclick="showDetails(1)">تفاصيل <i class="fas fa-eye"></i></a>
                 <span class="icon"><i class="fas fa-tag"></i></span>
             </div>
         </div>
@@ -737,7 +783,7 @@ header h1 {
                 <p>وصف مختصر عن العرض الأول في الوسائل الإلكترونية.</p>
             </div>
             <div class="card-actions">
-                <a href="#" onclick="showDetails(5)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <a href="#" onclick="showDetails(1)">تفاصيل <i class="fas fa-eye"></i></a>
                 <span class="icon"><i class="fas fa-tag"></i></span>
             </div>
         </div>
@@ -749,7 +795,7 @@ header h1 {
                 <p>وصف مختصر عن العرض الثاني في الوسائل الإلكترونية.</p>
             </div>
             <div class="card-actions">
-                <a href="#" onclick="showDetails(6)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <a href="#" onclick="showDetails(1)">تفاصيل <i class="fas fa-eye"></i></a>
                 <span class="icon"><i class="fas fa-tag"></i></span>
             </div>
         </div>
@@ -770,7 +816,7 @@ header h1 {
                 <p>وصف مختصر عن العرض الأول في القانون الدولي الخاص.</p>
             </div>
             <div class="card-actions">
-                <a href="#" onclick="showDetails(7)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <a href="#" onclick="showDetails(1)">تفاصيل <i class="fas fa-eye"></i></a>
                 <span class="icon"><i class="fas fa-tag"></i></span>
             </div>
         </div>
@@ -782,7 +828,7 @@ header h1 {
                 <p>وصف مختصر عن العرض الثاني في القانون الدولي الخاص.</p>
             </div>
             <div class="card-actions">
-                <a href="#" onclick="showDetails(8)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <a href="#" onclick="showDetails(1)">تفاصيل <i class="fas fa-eye"></i></a>
                 <span class="icon"><i class="fas fa-tag"></i></span>
             </div>
         </div>
@@ -803,7 +849,7 @@ header h1 {
                 <p>وصف مختصر عن العرض الأول في نظرية العقد الإلكتروني.</p>
             </div>
             <div class="card-actions">
-                <a href="#" onclick="showDetails(9)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <a href="#" onclick="showDetails(1)">تفاصيل <i class="fas fa-eye"></i></a>
                 <span class="icon"><i class="fas fa-tag"></i></span>
             </div>
         </div>
@@ -815,7 +861,7 @@ header h1 {
                 <p>وصف مختصر عن العرض الثاني في نظرية العقد الإلكتروني.</p>
             </div>
             <div class="card-actions">
-                <a href="#" onclick="showDetails(10)">تفاصيل <i class="fas fa-info-circle"></i></a>
+                <a href="#" onclick="showDetails(1)">تفاصيل <i class="fas fa-eye"></i></a>
                 <span class="icon"><i class="fas fa-tag"></i></span>
             </div>
         </div>
@@ -909,6 +955,7 @@ header h1 {
         <button onclick="closeDetails()" class="close-btn"><i class="fas fa-times"></i></button>
     </div>
 </div>
+
 
 <script>
 	// عناصر التفاعل
@@ -1016,6 +1063,16 @@ function showDetails(offerId) {
 // دالة لإغلاق نافذة التفاصيل
 function closeDetails() {
     document.getElementById('details-overlay').style.display = 'none';
+}
+// دالة لعرض نافذة التحميل
+function showDownloadPopup() {
+    const popup = document.getElementById('download-popup');
+    popup.style.display = 'flex'; // عرض النافذة
+
+    // إخفاء النافذة بعد 3 ثوانٍ
+    setTimeout(() => {
+        popup.style.display = 'none';
+    }, 3000); // 3000 ميلي ثانية = 3 ثوانٍ
 }
 
 // دالة لنسخ النص
